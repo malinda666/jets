@@ -17,7 +17,7 @@ const PageLayout: FC<LayoutProps> = ({
   return (
     <>
       <Head>
-        <title>NEXT+TS+GSAP+LS+TW Template</title>
+        <title>Jet Seattle&trade;</title>
         <link
           rel="apple-touch-icon"
           sizes="180x180"

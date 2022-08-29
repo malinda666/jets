@@ -6,7 +6,20 @@ module.exports = {
     './src/containers/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        black: '#000000',
+        dark: '#14213d',
+        third: '#fca311',
+        light: '#e5e5e5',
+        white: '#ffffff',
+        accent: '#1bb0ce',
+      },
+      fontFamily: {
+        title: ['Hanken Grotesk Regular', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }

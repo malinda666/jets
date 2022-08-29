@@ -11,7 +11,7 @@ import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 import { PageLayout } from '@/components'
 
 import 'locomotive-scroll/dist/locomotive-scroll.css'
-import '@/styles/globals.css'
+import '@/styles/globals.scss'
 
 gsap.registerPlugin(ScrollTrigger)
 
