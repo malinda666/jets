@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import { Ref, FC } from 'react'
 
+import Header from './Header'
+
 type LayoutProps = {
   children?: React.ReactNode
   containerRef?: Ref<HTMLDivElement>
@@ -39,9 +41,9 @@ const PageLayout: FC<LayoutProps> = ({
         <link rel="manifest" href="/site.webmanifest"></link>
       </Head>
       {/* TODO Header */}
-      {/* <Header /> */}
+      <Header />
       <div className="" ref={containerRef} data-scroll-container>
-        <main className="max-w-7xl relative mx-auto">{children}</main>
+        <main className="w-full relative mx-auto">{children}</main>
       </div>
       {/* TODO Footer */}
       {/* <Footer /> */}
