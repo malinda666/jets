@@ -10,17 +10,6 @@
   --radius: 2px;
 }
 
-.title {
-  &-xl {
-    font-size: 25vw;
-  }
-  &-lg {
-    font-size: 15vw;
-  }
-  &-md {
-    font-size: 10vw;
-  }
-}
 .mirror {
   @apply backdrop-filter backdrop-grayscale backdrop-blur-md backdrop-contrast-200 bg-opacity-70;
 }

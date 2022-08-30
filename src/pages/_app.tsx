@@ -9,6 +9,7 @@ import gsap from 'gsap/dist/gsap'
 import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 
 import { PageLayout } from '@/components'
+import { MainContextProvider } from '@/context'
 
 import 'locomotive-scroll/dist/locomotive-scroll.css'
 import '@/styles/globals.scss'
@@ -57,29 +58,31 @@ function MyApp({ Component, pageProps }: AppProps) {
   const { asPath } = useRouter()
   const containerRef = useRef(null) as MutableRefObject<HTMLDivElement | null>
   return (
-    <RLSProvider
-      options={{
-        smooth: true,
-        // ... all available Locomotive Scroll instance options
-      }}
-      watch={
-        [
-          //..all the dependencies you want to watch to update the scroll.
-          //  Basicaly, you would want to watch page/location changes
-          //  For exemple, on Next.js you would want to watch properties like `router.asPath` (you may want to add more criterias if the instance should be update on locations with query parameters)
-        ]
-      }
-      location={asPath}
-      onLocationChange={(scroll: any) =>
-        scroll.scrollTo(0, { duration: 0, disableLerp: true })
-      }
-      containerRef={containerRef}
-    >
-      <ScrollTriggerProxy />
-      <PageLayout containerRef={containerRef}>
-        <Component {...pageProps} />
-      </PageLayout>
-    </RLSProvider>
+    <MainContextProvider>
+      <RLSProvider
+        options={{
+          smooth: true,
+          // ... all available Locomotive Scroll instance options
+        }}
+        watch={
+          [
+            //..all the dependencies you want to watch to update the scroll.
+            //  Basicaly, you would want to watch page/location changes
+            //  For exemple, on Next.js you would want to watch properties like `router.asPath` (you may want to add more criterias if the instance should be update on locations with query parameters)
+          ]
+        }
+        location={asPath}
+        onLocationChange={(scroll: any) =>
+          scroll.scrollTo(0, { duration: 0, disableLerp: true })
+        }
+        containerRef={containerRef}
+      >
+        <ScrollTriggerProxy />
+        <PageLayout containerRef={containerRef}>
+          <Component {...pageProps} />
+        </PageLayout>
+      </RLSProvider>
+    </MainContextProvider>
   )
 }
 

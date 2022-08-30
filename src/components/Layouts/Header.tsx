@@ -19,7 +19,7 @@ const Header = () => {
     const menuCloseButton = gsap.utils.selector(menubutton)('span')[1]
     const menuOpenButton = gsap.utils.selector(menubutton)('span')[0]
 
-    gsap.set(menuWrapper.current, { x: '100%' })
+    gsap.set(menuWrapper.current, { y: '100%' })
     gsap.set(menuCloseButton, {
       yPercent: 30,
       opacity: 0,
@@ -63,7 +63,7 @@ const Header = () => {
       .to(
         menuWrapper.current,
         {
-          x: '0%',
+          y: '0%',
           ease: 'expo.out',
           duration: 1,
         },
@@ -123,14 +123,14 @@ const Header = () => {
         </div>
       </header>
       <div
-        className="fixed top-0 right-0 w-2/3 min-h-screen bg-black z-[98]"
+        className="fixed top-0 right-0 w-full min-h-screen bg-black z-[98]"
         ref={menuWrapper}
       >
         <nav className="absolute inset-0 flex items-center justify-center">
           <ul className="relative flex flex-col items-center justify-center">
-            <li className="text-2xl text-light">Explore</li>
-            <li className="text-2xl text-light">About Us</li>
-            <li className="text-2xl text-light">Contact</li>
+            <li className="text-4xl text-light">Explore</li>
+            <li className="text-4xl text-light">About Us</li>
+            <li className="text-4xl text-light">Contact</li>
           </ul>
         </nav>
       </div>

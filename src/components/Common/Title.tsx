@@ -41,13 +41,13 @@ const Title: FC<TitleProps> = ({ content, size, cls = '', type = '' }) => {
     let s
     switch (size.toLowerCase()) {
       case 'md':
-        s = 'title-md'
+        s = 'title-line-md'
         break
       case 'lg':
-        s = 'title-lg'
+        s = 'title-line-lg'
         break
       case 'xl':
-        s = 'title-xl'
+        s = 'title-line-xl'
         break
 
       default:
@@ -60,20 +60,23 @@ const Title: FC<TitleProps> = ({ content, size, cls = '', type = '' }) => {
   return (
     <h1
       aria-label={content}
-      className={[
-        'relative overflow-hidden leading-none tracking-tighter font-title w-full text-center px-2',
-        getFontSize(size),
-        cls,
-      ].join(' ')}
+      className={['title', cls].join(' ')}
       ref={titleRef}
     >
-      {content.split('').map((char, i) => (
-        <span
-          key={i.toString()}
-          className="relative inline-block whitespace-pre translate-y-full "
+      {content.split(' ').map((line, i) => (
+        <div
+          className={['title-line', getFontSize(size)].join(' ')}
+          key={line + i.toString()}
         >
-          {char}
-        </span>
+          {line.split('').map((char, i) => (
+            <span
+              key={i.toString()}
+              className="relative inline-block whitespace-pre translate-y-full"
+            >
+              {char}
+            </span>
+          ))}
+        </div>
       ))}
     </h1>
   )

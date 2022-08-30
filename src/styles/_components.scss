@@ -1,3 +1,29 @@
+.title {
+  $xl: 25vw;
+  $lg: 15vw;
+  $md: 9vw;
+  @apply relative;
+
+  &-line {
+    @apply overflow-hidden tracking-tighter font-title w-full text-center px-2;
+    &-xl {
+      font-size: $xl;
+      line-height: $xl;
+      height: calc($xl - 3vw);
+    }
+    &-lg {
+      font-size: $lg;
+      line-height: $lg;
+      height: calc($lg - 1vw);
+    }
+    &-md {
+      font-size: $md;
+      line-height: $md;
+      height: calc($md - 1vw);
+    }
+  }
+}
+
 .section {
   &-light {
     @apply bg-light text-black;
@@ -7,21 +33,22 @@
   }
 }
 .button {
-  @apply relative flex items-center justify-center rounded-[var(--radius)] font-title font-semibold capitalize overflow-hidden outline-none border-none;
+  @apply relative m-4 flex items-center justify-center rounded-[var(--radius)] font-title font-semibold capitalize overflow-hidden outline-none border-none transition-all ease-[var(--ease)];
 
   &:hover {
-    .arrow::after {
-      // @apply scale-150;
-    }
+    @apply bg-accent;
+    // .arrow::after {
+    //   @apply scale-150;
+    // }
     .arrow svg {
-      @apply scale-110;
+      transform: rotate(-30deg) scale(1.5);
     }
   }
   & .arrow {
-    @apply relative w-4 h-full ml-3;
+    @apply relative w-3 -rotate-0 h-full ml-3;
 
     & svg {
-      @apply text-current z-[2]  transition-transform ease-[var(--ease)];
+      @apply text-current z-[2] transition-transform ease-[var(--ease)];
     }
 
     &::after {

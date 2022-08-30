@@ -1,8 +1,8 @@
-import { FC, ReactNode } from 'react'
+import { ButtonHTMLAttributes, FC, ReactNode } from 'react'
 
 import Arrow from './Arrow'
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode
   size?: string
   variant?: string
@@ -58,6 +58,7 @@ const Button: FC<ButtonProps> = ({
   size = 'sm',
   variant = 'primary',
   hasArrow = true,
+  ...props
 }) => {
   return (
     <button
@@ -66,6 +67,7 @@ const Button: FC<ButtonProps> = ({
         getButtonSize(size),
         getButtonVariant(variant),
       ].join(' ')}
+      {...props}
     >
       <span className="content">{children}</span>
       {hasArrow ? (
