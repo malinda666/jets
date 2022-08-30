@@ -16,7 +16,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Explore />
-      <Section>
+      <Section cls="!h-[120vh]">
         <div className="absolute -top-[10%] left-0 w-full h-[150%] -z-[1] opacity-50">
           <Image
             src={HeroImage}
@@ -29,18 +29,17 @@ const Home: NextPage = () => {
           />
         </div>
         <div className="relative flex flex-col items-center justify-center">
-          <Title content="First Section" size="lg" />
+          <Title content="Adveture Awaits" size="md" />
           <Button
             variant="primary"
             onClick={() => main?.setExploreOpen(!main.isExploreOpen)}
-            data-scroll
-            data-scroll-speed="-0.25"
+            cls="mt-16"
           >
-            Explore
+            Explore Locations
           </Button>
         </div>
       </Section>
-      <Section>
+      <Section isLight>
         <h1 className="text-9xl">Second section</h1>
       </Section>
       <Section>

@@ -14,7 +14,7 @@ const Explore: FC = () => {
     gsap.set(exploreWrapper.current, { y: '100%' })
 
     exploreTl.current = gsap.timeline({
-      defaults: { ease: 'expo.out' },
+      defaults: { ease: 'expo.inOut' },
       paused: true,
     })
     exploreTl.current.to(exploreWrapper.current, {

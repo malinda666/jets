@@ -64,8 +64,8 @@ const Header = () => {
         menuWrapper.current,
         {
           y: '0%',
-          ease: 'expo.out',
-          duration: 1,
+          ease: 'expo.inOut',
+          duration: 1.25,
         },
         0
       )

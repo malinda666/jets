@@ -1,4 +1,12 @@
-import { ButtonHTMLAttributes, FC, ReactNode } from 'react'
+import {
+  ButtonHTMLAttributes,
+  FC,
+  MutableRefObject,
+  ReactNode,
+  useEffect,
+  useRef,
+} from 'react'
+import gsap from 'gsap'
 
 import Arrow from './Arrow'
 
@@ -7,6 +15,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: string
   variant?: string
   hasArrow?: boolean
+  cls?: string
 }
 
 const getButtonSize = (size: string) => {
@@ -58,16 +67,31 @@ const Button: FC<ButtonProps> = ({
   size = 'sm',
   variant = 'primary',
   hasArrow = true,
+  cls,
   ...props
 }) => {
+  const buttonWrapper = useRef() as MutableRefObject<HTMLButtonElement>
+
+  useEffect(() => {
+    gsap.to(buttonWrapper.current, {
+      y: '0%',
+      duration: 1.24,
+      opacity: 1,
+      ease: 'expo.out',
+      delay: 0.5,
+    })
+  }, [])
+
   return (
     <button
       className={[
         'button',
         getButtonSize(size),
         getButtonVariant(variant),
+        cls,
       ].join(' ')}
       {...props}
+      ref={buttonWrapper}
     >
       <span className="content">{children}</span>
       {hasArrow ? (

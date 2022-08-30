@@ -65,7 +65,11 @@ const Title: FC<TitleProps> = ({ content, size, cls = '', type = '' }) => {
     >
       {content.split(' ').map((line, i) => (
         <div
-          className={['title-line', getFontSize(size)].join(' ')}
+          className={[
+            'title-line',
+            getFontSize(size),
+            i === 1 ? 'font-bold' : '',
+          ].join(' ')}
           key={line + i.toString()}
         >
           {line.split('').map((char, i) => (

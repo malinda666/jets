@@ -33,7 +33,7 @@
   }
 }
 .button {
-  @apply relative m-4 flex items-center justify-center rounded-[var(--radius)] font-title font-semibold capitalize overflow-hidden outline-none border-none transition-all ease-[var(--ease)];
+  @apply relative flex items-center justify-center rounded-[var(--radius)] font-title font-semibold capitalize overflow-hidden outline-none border-none transition-all translate-y-full opacity-0 ease-[var(--ease)];
 
   &:hover {
     @apply bg-accent;
