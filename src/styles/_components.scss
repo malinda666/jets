@@ -1,0 +1,8 @@
+.section {
+  &-light {
+    @apply bg-light text-black;
+  }
+  &-dark {
+    @apply bg-black text-light;
+  }
+}

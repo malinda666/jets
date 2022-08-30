@@ -3,6 +3,9 @@ import gsap from 'gsap'
 import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 
 import { Section, Title } from '@/components'
+import Image from 'next/image'
+
+import HeroImage from '../../public/images/sl4.webp'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -10,6 +13,17 @@ const Home: NextPage = () => {
   return (
     <>
       <Section>
+        <div className="absolute -top-[10%] left-0 w-full h-[150%] -z-[1] opacity-50">
+          <Image
+            src={HeroImage}
+            alt="hero-image"
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center"
+            data-scroll
+            data-scroll-speed="1.5"
+          />
+        </div>
         <Title content="First" size="lg" />
       </Section>
       <Section>

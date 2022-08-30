@@ -77,7 +77,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     >
       <ScrollTriggerProxy />
       <PageLayout containerRef={containerRef}>
-        <Component {...pageProps} />;
+        <Component {...pageProps} />
       </PageLayout>
     </RLSProvider>
   )

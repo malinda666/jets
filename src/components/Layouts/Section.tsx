@@ -43,7 +43,7 @@ const Section: FC<SectionProps> = ({
       className={[
         'relative flex items-center justify-center',
         size ? getSize(size) : getSize('md'),
-        isLight ? 'bg-light' : 'bg-dark',
+        isLight ? 'section-light' : 'section-dark',
         cls,
       ].join(' ')}
       data-scroll

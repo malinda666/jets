@@ -5,88 +5,121 @@ import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 const Header = () => {
-  const navBar = useRef() as MutableRefObject<HTMLElement>
-  const menuButton = useRef() as MutableRefObject<HTMLDivElement>
   const menuWrapper = useRef() as MutableRefObject<HTMLDivElement>
+  const headerRef = useRef() as MutableRefObject<HTMLHeadElement>
 
   const menuTl = useRef() as any
 
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false)
 
   useEffect(() => {
-    const trigger = gsap.utils.selector(document)('section')[0]
-    const navList = gsap.utils.selector(navBar.current)('ul')
+    const menubutton = gsap.utils.selector(headerRef)('#js--menu-button')
+    const logo = gsap.utils.selector(headerRef)('#js--logo')
 
-    gsap.set(menuButton.current, { opacity: 0, y: 20 })
+    const menuCloseButton = gsap.utils.selector(menubutton)('span')[1]
+    const menuOpenButton = gsap.utils.selector(menubutton)('span')[0]
+
     gsap.set(menuWrapper.current, { x: '100%' })
+    gsap.set(menuCloseButton, {
+      yPercent: 30,
+      opacity: 0,
+      pointerEvents: 'none',
+    })
+    gsap.set(menuOpenButton, { yPercent: 0, opacity: 1, pointerEvents: 'all' })
 
-    menuTl.current = gsap.timeline({ paused: true })
-
+    menuTl.current = gsap.timeline({
+      paused: true,
+      defaults: { ease: 'expo.out' },
+    })
+    // menu reveal timeline
     gsap
       .timeline({
-        scrollTrigger: {
-          trigger: trigger,
-          start: 'center+=200 center+=5',
-          toggleActions: 'play none none reverse',
-        },
         defaults: {
-          ease: 'power3.inOut',
+          ease: 'expo.out',
         },
       })
-      .to(navList, {
-        duration: 0.2,
-        y: -20,
-        opacity: 0,
-      })
-      .to(
-        menuButton.current,
+
+      .from(
+        logo,
         {
-          duration: 0.3,
-          y: 0,
-          opacity: 1,
+          duration: 1.25,
+          yPercent: 10,
+          opacity: 0,
         },
-        0.1
+        0
+      )
+      .from(
+        menubutton,
+        {
+          duration: 1.25,
+          yPercent: 10,
+          opacity: 0,
+        },
+        0.2
+      )
+
+    // menu open close timeline
+    menuTl.current
+      .to(
+        menuWrapper.current,
+        {
+          x: '0%',
+          ease: 'expo.out',
+          duration: 1,
+        },
+        0
+      )
+      .to(
+        menuCloseButton,
+        {
+          yPercent: 0,
+          opacity: 1,
+          pointerEvents: 'all',
+          duration: 1.2,
+        },
+        '-=0.5'
+      )
+      .to(
+        menuOpenButton,
+        {
+          yPercent: -30,
+          opacity: 0,
+          pointerEvents: 'none',
+          duration: 1.2,
+        },
+        0
       )
   }, [])
 
   useEffect(() => {
-    menuTl.current.to(
-      menuWrapper.current,
-      {
-        x: '0%',
-        ease: 'expo.out',
-        duration: 1,
-      },
-      0
-    )
     if (isMenuOpen) {
       menuTl.current.play()
     } else {
       menuTl.current.reverse()
-      menuTl.current.seek(0)
     }
   }, [isMenuOpen])
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-full flex items-center justify-between px-16 py-4 z-[99] mix-blend-exclusion text-third">
-        <div className="relative font-title font-semibold text-lg">
+      <header
+        className="fixed top-0 left-0 w-full flex items-center justify-between px-16 py-6 z-[99] mix-blend-exclusion text-white"
+        ref={headerRef}
+      >
+        <div
+          className="relative font-title font-semibold text-lg"
+          id="js--logo"
+        >
           Jet Seattle&trade;
         </div>
-        <nav ref={navBar}>
-          <ul className="flex items-center justify-end space-x-2">
-            <li>Explore</li>
-            <li>About Us</li>
-            <li>Contact</li>
-          </ul>
-        </nav>
+
         <div
-          className="absolute right-0 p-16"
-          ref={menuButton}
+          className="absolute right-0 p-16 cursor-pointer flex items-center justify-center"
           aria-hidden
+          id="js--menu-button"
           onClick={() => setMenuOpen(!isMenuOpen)}
         >
-          Menu
+          <span className="absolute">Menu</span>
+          <span className="absolute">Close</span>
         </div>
       </header>
       <div
