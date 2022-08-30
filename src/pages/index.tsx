@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 
-import { Section, Title } from '@/components'
+import { Section, Title, Button } from '@/components'
 import Image from 'next/image'
 
 import HeroImage from '../../public/images/sl4.webp'
@@ -24,7 +24,10 @@ const Home: NextPage = () => {
             data-scroll-speed="1.5"
           />
         </div>
-        <Title content="First" size="lg" />
+        <div className="relative flex flex-col items-center justify-center">
+          <Title content="First" size="lg" />
+          <Button variant="primary">Explore</Button>
+        </div>
       </Section>
       <Section>
         <h1 className="text-9xl">Second section</h1>

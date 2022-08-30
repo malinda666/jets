@@ -6,3 +6,28 @@
     @apply bg-black text-light;
   }
 }
+.button {
+  @apply relative flex items-center justify-center rounded-[var(--radius)] font-title font-semibold capitalize overflow-hidden outline-none border-none;
+
+  &:hover {
+    .arrow::after {
+      // @apply scale-150;
+    }
+    .arrow svg {
+      @apply scale-110;
+    }
+  }
+  & .arrow {
+    @apply relative w-4 h-full ml-3;
+
+    & svg {
+      @apply text-current z-[2]  transition-transform ease-[var(--ease)];
+    }
+
+    &::after {
+      content: '';
+      @apply absolute bottom-0 left-0 w-[120%] h-[120%] z-[1] rounded-[var(--radius)] bg-black scale-0 transition-transform ease-[var(--ease)];
+      transform-origin: center center;
+    }
+  }
+}
