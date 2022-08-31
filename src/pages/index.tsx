@@ -30,13 +30,10 @@ const Home: NextPage = () => {
         </div>
         <div className="relative flex flex-col items-center justify-center">
           <Title content="Adveture Awaits" size="md" />
-          <Button
-            variant="primary"
-            onClick={() => main?.setExploreOpen(!main.isExploreOpen)}
-            cls="mt-16"
-          >
-            Explore Locations
-          </Button>
+          <p className="relative max-w-sm text-gray-300 text-center mt-8">
+            Lorem ipsum dolor sit amet con sectetur adipisicing elit. Repellat
+            beatae animi laboriosam.
+          </p>
         </div>
       </Section>
       <Section isLight>

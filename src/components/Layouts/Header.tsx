@@ -2,9 +2,13 @@ import { FC, useRef, useEffect, useState, MutableRefObject } from 'react'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 
+import { MenuIcon, CloseIcon, Button } from '@/components'
+import { useMain } from '@/context'
+
 gsap.registerPlugin(ScrollTrigger)
 
 const Header = () => {
+  const main = useMain()
   const menuWrapper = useRef() as MutableRefObject<HTMLDivElement>
   const headerRef = useRef() as MutableRefObject<HTMLHeadElement>
 
@@ -14,13 +18,14 @@ const Header = () => {
 
   useEffect(() => {
     const menubutton = gsap.utils.selector(headerRef)('#js--menu-button')
+    const explorebutton = gsap.utils.selector(headerRef)('button')
     const logo = gsap.utils.selector(headerRef)('#js--logo')
 
-    const menuCloseButton = gsap.utils.selector(menubutton)('span')[1]
-    const menuOpenButton = gsap.utils.selector(menubutton)('span')[0]
+    const menuCloseButton = gsap.utils.selector(menubutton)('#js--closebutton')
+    const menuOpenButton = gsap.utils.selector(menubutton)('#js--menubutton')
 
     gsap.set(menuWrapper.current, { y: '100%' })
-    gsap.set(menuCloseButton, {
+    gsap.set([menuCloseButton, menubutton, explorebutton, logo], {
       yPercent: 30,
       opacity: 0,
       pointerEvents: 'none',
@@ -29,7 +34,7 @@ const Header = () => {
 
     menuTl.current = gsap.timeline({
       paused: true,
-      defaults: { ease: 'expo.out' },
+      defaults: { ease: 'expo.inOut' },
     })
     // menu reveal timeline
     gsap
@@ -39,27 +44,34 @@ const Header = () => {
         },
       })
 
-      .from(
+      .to(
         logo,
         {
           duration: 1.25,
-          yPercent: 10,
-          opacity: 0,
+          yPercent: 0,
+          opacity: 1,
+          pointerEvents: 'all',
         },
         0
       )
-      .from(
-        menubutton,
+      .to(
+        [explorebutton, menubutton],
         {
           duration: 1.25,
-          yPercent: 10,
-          opacity: 0,
+          yPercent: 0,
+          opacity: 1,
+          pointerEvents: 'all',
+          stagger: {
+            amount: 0.125,
+            from: 'end',
+          },
         },
         0.2
       )
 
     // menu open close timeline
     menuTl.current
+      .addLabel('openMenu', 0)
       .to(
         menuWrapper.current,
         {
@@ -67,17 +79,7 @@ const Header = () => {
           ease: 'expo.inOut',
           duration: 1.25,
         },
-        0
-      )
-      .to(
-        menuCloseButton,
-        {
-          yPercent: 0,
-          opacity: 1,
-          pointerEvents: 'all',
-          duration: 1.2,
-        },
-        '-=0.5'
+        'openMenu'
       )
       .to(
         menuOpenButton,
@@ -85,9 +87,19 @@ const Header = () => {
           yPercent: -30,
           opacity: 0,
           pointerEvents: 'none',
-          duration: 1.2,
+          duration: 0.5,
         },
-        0
+        'openMenu'
+      )
+      .to(
+        menuCloseButton,
+        {
+          yPercent: 0,
+          opacity: 1,
+          pointerEvents: 'all',
+          duration: 0.5,
+        },
+        'openMenu+=0.15'
       )
   }, [])
 
@@ -112,14 +124,27 @@ const Header = () => {
           Jet Seattle&trade;
         </div>
 
-        <div
-          className="absolute right-0 p-16 cursor-pointer flex items-center justify-center"
-          aria-hidden
-          id="js--menu-button"
-          onClick={() => setMenuOpen(!isMenuOpen)}
-        >
-          <span className="absolute">Menu</span>
-          <span className="absolute">Close</span>
+        <div className="relative flex items-center justify-end">
+          <Button
+            variant="primary"
+            onClick={() => main?.setExploreOpen(!main.isExploreOpen)}
+            cls="mr-8"
+          >
+            Explore Locations
+          </Button>
+          <div
+            className="relative ml-4 cursor-pointer flex items-center justify-center w-4 h-4"
+            aria-hidden
+            id="js--menu-button"
+            onClick={() => setMenuOpen(!isMenuOpen)}
+          >
+            <span className="absolute w-6 h-6" id="js--menubutton">
+              <MenuIcon />
+            </span>
+            <span className="absolute w-6 h-6" id="js--closebutton">
+              <CloseIcon />
+            </span>
+          </div>
         </div>
       </header>
       <div

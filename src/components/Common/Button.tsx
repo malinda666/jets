@@ -72,15 +72,15 @@ const Button: FC<ButtonProps> = ({
 }) => {
   const buttonWrapper = useRef() as MutableRefObject<HTMLButtonElement>
 
-  useEffect(() => {
-    gsap.to(buttonWrapper.current, {
-      y: '0%',
-      duration: 1.24,
-      opacity: 1,
-      ease: 'expo.out',
-      delay: 0.5,
-    })
-  }, [])
+  // useEffect(() => {
+  //   gsap.to(buttonWrapper.current, {
+  //     y: '0%',
+  //     duration: 1.24,
+  //     opacity: 1,
+  //     ease: 'expo.out',
+  //     delay: 0.5,
+  //   })
+  // }, [])
 
   return (
     <button

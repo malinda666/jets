@@ -3,6 +3,7 @@ import gsap from 'gsap'
 import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 
 import { useMain } from '@/context'
+import { CloseIcon } from '@/components'
 
 gsap.registerPlugin(ScrollTrigger)
 const Explore: FC = () => {
@@ -37,11 +38,13 @@ const Explore: FC = () => {
       ref={exploreWrapper}
     >
       <div
-        className="absolute right-0 top-0 m-8"
+        className="absolute left-0 top-0 w-16 m-8 group cursor-pointer"
         aria-hidden
         onClick={() => main?.setExploreOpen(false)}
       >
-        close
+        <span className="relative" id="js--closebutton">
+          <CloseIcon />
+        </span>
       </div>
       explore
     </div>
