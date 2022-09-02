@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useRef } from 'react'
 import gsap from 'gsap'
-// import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 
 interface TitleProps {
   content: string
@@ -8,6 +8,8 @@ interface TitleProps {
   cls?: string
   type?: string
 }
+
+gsap.registerPlugin(ScrollTrigger)
 const Title: FC<TitleProps> = ({ content, size, cls = '', type = '' }) => {
   const titleRef = useRef() as React.MutableRefObject<HTMLHeadingElement>
 
@@ -73,10 +75,7 @@ const Title: FC<TitleProps> = ({ content, size, cls = '', type = '' }) => {
           key={line + i.toString()}
         >
           {line.split('').map((char, i) => (
-            <span
-              key={i.toString()}
-              className="relative inline-block whitespace-pre translate-y-full"
-            >
+            <span key={i.toString()} className="reveal-txt">
               {char}
             </span>
           ))}

@@ -6,5 +6,7 @@ export { default as Arrow } from './Common/Arrow'
 export { default as MenuIcon } from './Common/MenuIcon'
 export { default as CloseIcon } from './Common/CloseIcon'
 export { default as Button } from './Common/Button'
+export { default as Paragraph } from './Common/Paragraph'
+export { default as Marquee } from './Common/Marquee'
 
 export { default as Explore } from './Explore'

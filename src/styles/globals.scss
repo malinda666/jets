@@ -10,6 +10,10 @@
   --radius: 2px;
 }
 
+body {
+  @apply bg-light text-black font-body;
+}
+
 .mirror {
   @apply backdrop-filter backdrop-grayscale backdrop-blur-md backdrop-contrast-200 bg-opacity-70;
 }

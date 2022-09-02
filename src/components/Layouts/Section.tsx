@@ -18,7 +18,7 @@ const Section: FC<SectionProps> = ({
 
     switch (type) {
       case 'sm':
-        _sizeCls = 'h-full'
+        _sizeCls = 'h-[75vh]'
         break
       case 'md':
         _sizeCls = 'h-[100vh]'

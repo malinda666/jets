@@ -23,6 +23,29 @@
     }
   }
 }
+.reveal-txt {
+  @apply relative inline-block whitespace-pre translate-y-[110%];
+}
+.para {
+  $lg: 2.33337rem;
+  $md: 1rem;
+  @apply relative;
+  &-line {
+    @apply overflow-hidden tracking-normal text-center;
+    &-lg {
+      font-size: $lg;
+      line-height: $lg;
+      height: calc($lg * 1.15);
+      @apply font-body;
+    }
+    &-md {
+      font-size: $md;
+      line-height: $md;
+      height: calc($md * 1.2);
+      @apply font-body;
+    }
+  }
+}
 
 .section {
   &-light {
@@ -34,9 +57,18 @@
 }
 .button {
   @apply relative flex items-center justify-center rounded-[var(--radius)] font-title font-semibold capitalize overflow-hidden outline-none border-none transition-all ease-[var(--ease)];
-
+  > span {
+    @apply relative flex items-center justify-center text-black;
+  }
+  &::after {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-full bg-third rounded-[var(--radius)]  mix-blend-exclusion scale-y-0 origin-top transition-transform ease-[var(--ease)];
+  }
   &:hover {
-    @apply bg-accent;
+    &::after {
+      @apply scale-y-100 origin-bottom;
+    }
+    @apply font-semibold;
     // .arrow::after {
     //   @apply scale-150;
     // }

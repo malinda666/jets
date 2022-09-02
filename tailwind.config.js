@@ -17,7 +17,7 @@ module.exports = {
       },
       fontFamily: {
         title: ['Hanken Grotesk Regular', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
+        body: ['Manrope', 'sans-serif'],
       },
     },
   },
